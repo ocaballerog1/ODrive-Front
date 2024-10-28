@@ -39,30 +39,30 @@
         <v-text-field label="Título del evento" v-model="form.title" required></v-text-field>
         <v-textarea label="Descripción" v-model="form.description" rows="2"></v-textarea>
         <v-select label="Tipo de evento" :items="titles" v-model="form.type" required></v-select>
-        <v-select label="Color del evento" :items="colorOptions" v-model="form.color" item-text="name"
-          item-value="value"></v-select>
-        <input type="color" value="{{form.color}}">
+        <v-color-picker v-model="form.color" hide-inputs show-swatches=""></v-color-picker>
 
         <v-checkbox v-model="form.allDay" label="Todo el día" @change="toggleAllDay"></v-checkbox>
 
         <div v-if="!form.allDay">
-          <v-menu ref="startMenu" v-model="startMenu" :close-on-content-click="false" transition="scale-transition"
-            offset-y min-width="290px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="form.start" label="Inicio" prepend-icon="mdi-calendar" readonly v-bind="attrs"
-                v-on="on"></v-text-field>
-            </template>
-            <v-date-picker v-model="form.start" @input="startMenu = false"></v-date-picker>
-          </v-menu>
+          <v-row dense>
+            <!-- Campo de Fecha Inicio -->
+            <v-col cols="12" md="6">
+              <v-date-input
+                v-model="form.start"
+                label="Fecha inicio"
+                variant="solo"
+              ></v-date-input>
+            </v-col>
 
-          <v-menu ref="endMenu" v-model="endMenu" :close-on-content-click="false" transition="scale-transition" offset-y
-            min-width="290px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="form.end" label="Fin" prepend-icon="mdi-calendar" readonly v-bind="attrs"
-                v-on="on"></v-text-field>
-            </template>
-            <v-date-picker v-model="form.end" @input="endMenu = false"></v-date-picker>
-          </v-menu>
+            <!-- Campo de Fecha Fin -->
+            <v-col cols="12" md="6">
+              <v-date-input
+                v-model="form.end"
+                label="Fecha final"
+                variant="solo"
+              ></v-date-input>
+            </v-col>
+          </v-row>
         </div>
 
         <!-- Repetir evento -->
@@ -130,7 +130,7 @@ export default {
     miniCalendar: new Date(), // Fecha seleccionada en el mini calendario
     dailyEvents: [], // Eventos filtrados para el día seleccionado
     events: [], // Lista de eventos
-    colorOptions: ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'grey'],
+    color: '#FFFFFF',
     titles: ['Reunión', 'Vacaciones', 'Días libres', 'Viaje', 'Evento', 'Cumpleaños', 'Conferencia', 'Fiesta'],
     reminderOptions: ['Ninguno', '5 minutos antes', '10 minutos antes', '30 minutos antes'],
   }),
