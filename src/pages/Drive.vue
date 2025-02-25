@@ -50,7 +50,6 @@
               <v-card-actions>
                 <v-btn @click="deleteFile(file)" color="red">Eliminar</v-btn>
                 <v-btn @click="downloadFile(file)" color="primary">Descargar</v-btn>
-                <v-btn  color="primary">Ver</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -245,7 +244,7 @@ export default {
       return imageExtensions.includes(ext);
     },
     isCodeFile(file) {
-      const codeExtensions = ['py', 'js', 'html', 'css', 'java', 'cpp', 'c', 'rb', 'php', 'go', 'ts', 'sh', 'json', 'xml', 'yml', 'yaml', 'md', 'txt'];
+      const codeExtensions = ['py', 'js', 'html', 'css', 'java', 'cpp', 'c', 'rb', 'php', 'go', 'ts', 'sh', 'json', 'xml', 'yml', 'yaml', 'md', 'txt', 'vue'];
       const ext = this.getFileExtension(file);
       return codeExtensions.includes(ext);
     },
